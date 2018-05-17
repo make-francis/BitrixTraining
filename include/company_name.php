@@ -1,0 +1,1 @@
+<img src="/include/logo-jyga.png" width="183" height="50"><br>
