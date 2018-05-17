@@ -104,3 +104,8 @@ mockups/
 bitrix/php_interface/make_lang/backup/
 bitrix/php_interface/include/make_backup/
 BitrixTraining/bitrix/php_interface/dbconn.php
+
+BitrixTraining/upload/
+BitrixTraining/bitrix/
+!BitrixTraining/bitrix/php_interface/
+!BitrixTraining/bitrix/templates/
