@@ -71,261 +71,6 @@ $stub = '
 
 if (!$arResult["AJAX_CALL"])
 {
-	?><div class="feed-wrap"><?
-}
-
-?><script>
-	<?
-	if (!$arResult["AJAX_CALL"])
-	{
-		?>
-		BX.message({
-			sonetLGetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.ex/ajax.php')?>',
-			sonetLSetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.ex/ajax.php')?>',
-			sonetLESetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.entry/ajax.php')?>',
-			sonetLEPath: '<?=CUtil::JSEscape($arParams["PATH_TO_LOG_ENTRY"])?>',
-			sonetLSessid: '<?=bitrix_sessid_get()?>',
-			sonetLLangId: '<?=CUtil::JSEscape(LANGUAGE_ID)?>',
-			sonetLSiteId: '<?=CUtil::JSEscape(SITE_ID)?>',
-			sonetLSiteTemplateId: '<?=CUtil::JSEscape(SITE_TEMPLATE_ID)?>',
-			sonetLNoSubscriptions: '<?=GetMessageJS("SONET_C30_NO_SUBSCRIPTIONS")?>',
-			sonetLInherited: '<?=GetMessageJS("SONET_C30_INHERITED")?>',
-			sonetLDialogClose: '<?=GetMessageJS("SONET_C30_DIALOG_CLOSE_BUTTON")?>',
-			sonetLDialogSubmit: '<?=GetMessageJS("SONET_C30_DIALOG_SUBMIT_BUTTON")?>',
-			sonetLDialogCancel: '<?=GetMessageJS("SONET_C30_DIALOG_CANCEL_BUTTON")?>',
-			sonetLbUseFavorites: '<?=(!isset($arParams["USE_FAVORITES"]) || $arParams["USE_FAVORITES"] != "N" ? "Y" : "N")?>',
-			sonetLMenuFavoritesTitleY: '<?=GetMessageJS("SONET_C30_MENU_TITLE_FAVORITES_Y")?>',
-			sonetLMenuFavoritesTitleN: '<?=GetMessageJS("SONET_C30_MENU_TITLE_FAVORITES_N")?>',
-			sonetLMenuLink: '<?=GetMessageJS("SONET_C30_MENU_TITLE_LINK2")?>',
-			sonetLMenuHref: '<?=GetMessageJS("SONET_C30_MENU_TITLE_HREF")?>',
-			sonetLMenuDelete: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE")?>',
-			sonetLMenuDeleteConfirm: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_CONFIRM")?>',
-			sonetLMenuDeleteSuccess: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_SUCCESS")?>',
-			sonetLMenuDeleteFailure: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_FAILURE")?>',
-			sonetLCounterType: '<?=CUtil::JSEscape($arResult["COUNTER_TYPE"])?>',
-			sonetLIsB24: '<?=(SITE_TEMPLATE_ID == "bitrix24" ? "Y" : "N")?>',
-			sonetRatingType : '<?=CUtil::JSEscape($arParams["RATING_TYPE"])?>',
-			sonetLErrorSessid : '<?=GetMessageJS("SONET_ERROR_SESSION")?>',
-			sonetLIsCRM : '<?=CUtil::JSEscape($arParams["IS_CRM"])?>',
-			sonetLCanDelete : '<?=($arResult["CAN_DELETE"] ? 'Y' : 'N')?>',
-			sonetLForumID : <?=intval($arParams["FORUM_ID"])?>,
-			sonetLFCreateTaskWait: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_WAIT")?>',
-			sonetLFCreateTaskButtonTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_BUTTON_TITLE")?>',
-			sonetLFCreateTaskSuccessTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_SUCCESS_TITLE")?>',
-			sonetLFCreateTaskFailureTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_FAILURE_TITLE")?>',
-			sonetLFCreateTaskSuccessDescription: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_SUCCESS_DESCRIPTION")?>',
-			sonetLFCreateTaskErrorGetData: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_ERROR_GET_DATA")?>',
-			sonetLFCreateTaskTaskPath: '<?=CUtil::JSEscape(\Bitrix\Main\Config\Option::get('socialnetwork', 'user_page', SITE_DIR.'company/personal/'))?>user/#user_id#/tasks/task/view/#task_id#/',
-			sonetLFCreateTaskEntityLink: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK")?>',
-			sonetLFCreateTaskEntityLinkBLOG_POST: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK_BLOG_POST")?>',
-			sonetLFCreateTaskEntityLinkBLOG_COMMENT: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK_BLOG_COMMENT")?>',
-			SONET_C30_T_LINK_COPIED: '<?=GetMessageJS("SONET_C30_T_LINK_COPIED")?>',
-			SONET_C30_T_EMPTY: '<?=GetMessageJS("SONET_C30_T_EMPTY")?>',
-			SONET_C30_T_EMPTY_SEARCH: '<?=GetMessageJS("SONET_C30_T_EMPTY_SEARCH")?>'
-
-		});
-		<?
-	}
-
-	if (!$arResult["AJAX_CALL"])
-	{
-		?>
-		BX.ready(function(){
-			oLF.initOnce();
-		});
-		<?
-	}
-
-	if (
-		!$arResult["AJAX_CALL"]
-		|| $arResult["bReload"]
-	)
-	{
-		?>
-		BX.ready(function(){
-			oLF.init({
-				firstPageLastTS : <?=intval($arResult["dateLastPageTS"])?>,
-				firstPageLastId : <?=intval($arResult["dateLastPageId"])?>,
-				refreshUrl: '<?=$APPLICATION->GetCurPageParam("logajax=Y&RELOAD=Y", array(
-					"flt_created_by_id",
-					"flt_group_id",
-					"flt_to_user_id",
-					"flt_date_datesel",
-					"flt_date_days",
-					"flt_date_from",
-					"flt_date_to",
-					"flt_date_to",
-					"preset_filter_id",
-					"sessid",
-					"bxajaxid",
-					"logajax",
-					"RELOAD",
-					"useBXMainFilter"
-				), false)?>'
-			});
-		});
-		<?
-	}
-
-	if ($arResult["AJAX_CALL"] && $arParams["SHOW_RATING"] == "Y")
-	{
-		if ($arParams["RATING_TYPE"] == "like")
-		{
-			?>
-			BX.loadCSS('/bitrix/components/bitrix/rating.vote/templates/<?=$arParams["RATING_TYPE"]?>/popup.css');
-			<?
-		}
-		?>
-		BX.loadCSS('/bitrix/components/bitrix/rating.vote/templates/<?=$arParams["RATING_TYPE"]?>/style.css');
-		<?
-	}
-
-	if ($arResult["bReload"])
-	{
-		?>
-		if (typeof __logOnReload === 'function')
-		{
-			BX.ready(function(){
-				window.bRefreshed = true;
-				__logOnReload(<?=intval($arResult["LOG_COUNTER"])?>);
-			});
-		}
-		<?
-	}
-	elseif ($arParams["IS_CRM"] == "Y" && !$arResult["AJAX_CALL"])
-	{
-		?>
-		if (typeof __logOnReload === 'function')
-		{
-			BX.ready(function(){
-				__logOnReload(<?=intval($arResult["LOG_COUNTER"])?>);
-			});
-		}
-		<?
-	}
-
-	if (!$arResult["AJAX_CALL"] || $arResult["bReload"])
-	{
-		?>
-		BX.ready(function(){
-			<?
-			if ($arParams["SET_LOG_COUNTER"] != "N")
-			{
-				?>
-				BX.onCustomEvent(window, 'onSonetLogCounterClear', [BX.message('sonetLCounterType')]);
-				<?
-				if (!$arResult["AJAX_CALL"])
-				{
-					?>
-					BX.addCustomEvent("onGoUp", function() {
-						var counter_wrap = BX('sonet_log_counter_2_wrap');
-						if (counter_wrap)
-						{
-							BX.removeClass(counter_wrap, 'feed-new-message-informer-fixed');
-							BX.removeClass(counter_wrap, 'feed-new-message-informer-fix-anim');
-						}
-					});
-
-					BX.addCustomEvent("onPullEvent-main", BX.delegate(function(command,params){
-						if (
-							command == 'user_counter'
-							&& params[BX.message('SITE_ID')]
-							&& params[BX.message('SITE_ID')][BX.message('sonetLCounterType')]
-						)
-						{
-							__logChangeCounter(BX.clone(params[BX.message('SITE_ID')][BX.message('sonetLCounterType')]));
-						}
-					}, this));
-
-					BX.addCustomEvent(window, "onImUpdateCounter", BX.proxy(function(arCount) {
-						__logChangeCounterArray(arCount);
-					}, this));
-
-					BX.addCustomEvent("onCounterDecrement", function(iDecrement) {
-						__logDecrementCounter(iDecrement);
-					});
-					<?
-				}
-			}
-
-			if (!$arResult["AJAX_CALL"])
-			{
-				?>
-				BX.addCustomEvent('onAjaxFailure', function(status){
-					if (status == 'auth')
-					{
-						top.location = top.location.href;
-					}
-				});
-				<?
-			}
-			?>
-		});
-
-		<?
-		if (!$arResult["AJAX_CALL"])
-		{
-			if(\Bitrix\Main\Page\Frame::isAjaxRequest())
-			{
-				?>setTimeout(function() {
-					oLF.recalcMoreButton();
-					oLF.registerViewAreaList();
-				}, 1000);<?
-			}
-			else
-			{
-				?>BX.bind(window, 'load', function() {
-					oLF.recalcMoreButton();
-					oLF.registerViewAreaList();
-				});<?
-			}
-		}
-	}
-
-	if (!$arResult["AJAX_CALL"] && !$arResult["bReload"])
-	{
-		?>
-		BX.ready(function() {
-			window.addEventListener("scroll", BX.throttle(function() {
-				BX.LazyLoad.onScroll();
-			}, 80));
-		});
-		<?
-	}
-	?>
-
-	BX.ready(function()
-	{
-		oLF.arMoreButtonID = [];
-
-		BX.addCustomEvent(window, "onAjaxInsertToNode", function() { BX.ajax.Setup({denyShowWait: true}, true); });
-		BX.bind(BX('sonet_log_counter_2_container'), 'click', oLF.clearContainerExternalNew);
-		BX.bind(BX('sonet_log_counter_2_container'), 'click', __logOnAjaxInsertToNode);
-
-		if (BX('sonet_log_more_container'))
-		{
-			BX.bind(BX('sonet_log_more_container'), 'click', oLF.clearContainerExternalMore);
-			BX.bind(BX('sonet_log_more_container'), 'click', __logOnAjaxInsertToNode);
-		}
-
-		if (BX('sonet_log_comment_text'))
-		{
-			BX('sonet_log_comment_text').onkeydown = BX.eventCancelBubble;
-		}
-
-		setTimeout(function() {
-			BX.LazyLoad.showImages(true);
-		}, 0);
-	});
-
-	BX.addCustomEvent("onFrameDataProcessed", function() {
-		BX.LazyLoad.showImages(true);
-	});
-
-</script><?
-
-if (!$arResult["AJAX_CALL"])
-{
 	$APPLICATION->AddHeadScript("/bitrix/components/bitrix/socialnetwork.log.entry/templates/.default/scripts.js");
 
 	if ($arParams["IS_CRM"] == "Y" && (!isset($arParams["CRM_ENABLE_ACTIVITY_EDITOR"]) || $arParams["CRM_ENABLE_ACTIVITY_EDITOR"] === true))
@@ -592,7 +337,260 @@ else // AJAX_CALL
 	$APPLICATION->RestartBuffer();
 }
 
+if (!$arResult["AJAX_CALL"])
+{
+	?><div class="feed-wrap"><?
+}
 
+?><script>
+	<?
+	if (!$arResult["AJAX_CALL"])
+	{
+		?>
+		BX.message({
+			sonetLGetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.ex/ajax.php')?>',
+			sonetLSetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.ex/ajax.php')?>',
+			sonetLESetPath: '<?=CUtil::JSEscape('/bitrix/components/bitrix/socialnetwork.log.entry/ajax.php')?>',
+			sonetLEPath: '<?=CUtil::JSEscape($arParams["PATH_TO_LOG_ENTRY"])?>',
+			sonetLSessid: '<?=bitrix_sessid_get()?>',
+			sonetLLangId: '<?=CUtil::JSEscape(LANGUAGE_ID)?>',
+			sonetLSiteId: '<?=CUtil::JSEscape(SITE_ID)?>',
+			sonetLSiteTemplateId: '<?=CUtil::JSEscape(SITE_TEMPLATE_ID)?>',
+			sonetLNoSubscriptions: '<?=GetMessageJS("SONET_C30_NO_SUBSCRIPTIONS")?>',
+			sonetLInherited: '<?=GetMessageJS("SONET_C30_INHERITED")?>',
+			sonetLDialogClose: '<?=GetMessageJS("SONET_C30_DIALOG_CLOSE_BUTTON")?>',
+			sonetLDialogSubmit: '<?=GetMessageJS("SONET_C30_DIALOG_SUBMIT_BUTTON")?>',
+			sonetLDialogCancel: '<?=GetMessageJS("SONET_C30_DIALOG_CANCEL_BUTTON")?>',
+			sonetLbUseFavorites: '<?=(!isset($arParams["USE_FAVORITES"]) || $arParams["USE_FAVORITES"] != "N" ? "Y" : "N")?>',
+			sonetLMenuFavoritesTitleY: '<?=GetMessageJS("SONET_C30_MENU_TITLE_FAVORITES_Y")?>',
+			sonetLMenuFavoritesTitleN: '<?=GetMessageJS("SONET_C30_MENU_TITLE_FAVORITES_N")?>',
+			sonetLMenuLink: '<?=GetMessageJS("SONET_C30_MENU_TITLE_LINK2")?>',
+			sonetLMenuHref: '<?=GetMessageJS("SONET_C30_MENU_TITLE_HREF")?>',
+			sonetLMenuDelete: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE")?>',
+			sonetLMenuDeleteConfirm: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_CONFIRM")?>',
+			sonetLMenuDeleteSuccess: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_SUCCESS")?>',
+			sonetLMenuDeleteFailure: '<?=GetMessageJS("SONET_C30_MENU_TITLE_DELETE_FAILURE")?>',
+			sonetLCounterType: '<?=CUtil::JSEscape($arResult["COUNTER_TYPE"])?>',
+			sonetLIsB24: '<?=(SITE_TEMPLATE_ID == "bitrix24" ? "Y" : "N")?>',
+			sonetRatingType : '<?=CUtil::JSEscape($arParams["RATING_TYPE"])?>',
+			sonetLErrorSessid : '<?=GetMessageJS("SONET_ERROR_SESSION")?>',
+			sonetLIsCRM : '<?=CUtil::JSEscape($arParams["IS_CRM"])?>',
+			sonetLCanDelete : '<?=($arResult["CAN_DELETE"] ? 'Y' : 'N')?>',
+			sonetLForumID : <?=intval($arParams["FORUM_ID"])?>,
+			sonetLFCreateTaskWait: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_WAIT")?>',
+			sonetLFCreateTaskButtonTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_BUTTON_TITLE")?>',
+			sonetLFCreateTaskSuccessTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_SUCCESS_TITLE")?>',
+			sonetLFCreateTaskFailureTitle: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_FAILURE_TITLE")?>',
+			sonetLFCreateTaskSuccessDescription: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_SUCCESS_DESCRIPTION")?>',
+			sonetLFCreateTaskErrorGetData: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_ERROR_GET_DATA")?>',
+			sonetLFCreateTaskTaskPath: '<?=CUtil::JSEscape(\Bitrix\Main\Config\Option::get('socialnetwork', 'user_page', SITE_DIR.'company/personal/'))?>user/#user_id#/tasks/task/view/#task_id#/',
+			sonetLFCreateTaskEntityLink: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK")?>',
+			sonetLFCreateTaskEntityLinkBLOG_POST: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK_BLOG_POST")?>',
+			sonetLFCreateTaskEntityLinkBLOG_COMMENT: '<?=GetMessageJS("SONET_C30_T_CREATE_TASK_LINK_BLOG_COMMENT")?>',
+			SONET_C30_T_LINK_COPIED: '<?=GetMessageJS("SONET_C30_T_LINK_COPIED")?>',
+			SONET_C30_T_EMPTY: '<?=GetMessageJS("SONET_C30_T_EMPTY")?>',
+			SONET_C30_T_EMPTY_SEARCH: '<?=GetMessageJS("SONET_C30_T_EMPTY_SEARCH")?>'
+
+		});
+		<?
+	}
+
+	if (!$arResult["AJAX_CALL"])
+	{
+		?>
+		BX.ready(function(){
+			oLF.initOnce();
+		});
+		<?
+	}
+
+	if (
+		!$arResult["AJAX_CALL"]
+		|| $arResult["bReload"]
+	)
+	{
+		?>
+		BX.ready(function(){
+			oLF.init({
+				firstPageLastTS : <?=intval($arResult["dateLastPageTS"])?>,
+				firstPageLastId : <?=intval($arResult["dateLastPageId"])?>,
+				refreshUrl: '<?=$APPLICATION->GetCurPageParam("logajax=Y&RELOAD=Y", array(
+					"flt_created_by_id",
+					"flt_group_id",
+					"flt_to_user_id",
+					"flt_date_datesel",
+					"flt_date_days",
+					"flt_date_from",
+					"flt_date_to",
+					"flt_date_to",
+					"preset_filter_id",
+					"sessid",
+					"bxajaxid",
+					"logajax",
+					"RELOAD",
+					"useBXMainFilter"
+				), false)?>'
+			});
+		});
+		<?
+	}
+
+	if ($arResult["AJAX_CALL"] && $arParams["SHOW_RATING"] == "Y")
+	{
+		if ($arParams["RATING_TYPE"] == "like")
+		{
+			?>
+			BX.loadCSS('/bitrix/components/bitrix/rating.vote/templates/<?=$arParams["RATING_TYPE"]?>/popup.css');
+			<?
+		}
+		?>
+		BX.loadCSS('/bitrix/components/bitrix/rating.vote/templates/<?=$arParams["RATING_TYPE"]?>/style.css');
+		<?
+	}
+
+	if ($arResult["bReload"])
+	{
+		?>
+		if (typeof __logOnReload === 'function')
+		{
+			BX.ready(function(){
+				window.bRefreshed = true;
+				__logOnReload(<?=intval($arResult["LOG_COUNTER"])?>);
+			});
+		}
+		<?
+	}
+	elseif ($arParams["IS_CRM"] == "Y" && !$arResult["AJAX_CALL"])
+	{
+		?>
+		if (typeof __logOnReload === 'function')
+		{
+			BX.ready(function(){
+				__logOnReload(<?=intval($arResult["LOG_COUNTER"])?>);
+			});
+		}
+		<?
+	}
+
+	if (!$arResult["AJAX_CALL"] || $arResult["bReload"])
+	{
+		?>
+		BX.ready(function(){
+			<?
+			if ($arParams["SET_LOG_COUNTER"] != "N")
+			{
+				?>
+				BX.onCustomEvent(window, 'onSonetLogCounterClear', [BX.message('sonetLCounterType')]);
+				<?
+				if (!$arResult["AJAX_CALL"])
+				{
+					?>
+					BX.addCustomEvent("onGoUp", function() {
+						var counter_wrap = BX('sonet_log_counter_2_wrap');
+						if (counter_wrap)
+						{
+							BX.removeClass(counter_wrap, 'feed-new-message-informer-fixed');
+							BX.removeClass(counter_wrap, 'feed-new-message-informer-fix-anim');
+						}
+					});
+
+					BX.addCustomEvent("onPullEvent-main", BX.delegate(function(command,params){
+						if (
+							command == 'user_counter'
+							&& params[BX.message('SITE_ID')]
+							&& params[BX.message('SITE_ID')][BX.message('sonetLCounterType')]
+						)
+						{
+							__logChangeCounter(BX.clone(params[BX.message('SITE_ID')][BX.message('sonetLCounterType')]));
+						}
+					}, this));
+
+					BX.addCustomEvent(window, "onImUpdateCounter", BX.proxy(function(arCount) {
+						__logChangeCounterArray(arCount);
+					}, this));
+
+					BX.addCustomEvent("onCounterDecrement", function(iDecrement) {
+						__logDecrementCounter(iDecrement);
+					});
+					<?
+				}
+			}
+
+			if (!$arResult["AJAX_CALL"])
+			{
+				?>
+				BX.addCustomEvent('onAjaxFailure', function(status){
+					if (status == 'auth')
+					{
+						top.location = top.location.href;
+					}
+				});
+				<?
+			}
+			?>
+		});
+
+		<?
+		if (!$arResult["AJAX_CALL"])
+		{
+			if(\Bitrix\Main\Page\Frame::isAjaxRequest())
+			{
+				?>setTimeout(function() {
+					oLF.recalcMoreButton();
+					oLF.registerViewAreaList();
+				}, 1000);<?
+			}
+			else
+			{
+				?>BX.bind(window, 'load', function() {
+					oLF.recalcMoreButton();
+					oLF.registerViewAreaList();
+				});<?
+			}
+		}
+	}
+
+	if (!$arResult["AJAX_CALL"] && !$arResult["bReload"])
+	{
+		?>
+		BX.ready(function() {
+			window.addEventListener("scroll", BX.throttle(function() {
+				BX.LazyLoad.onScroll();
+			}, 80));
+		});
+		<?
+	}
+	?>
+
+	BX.ready(function()
+	{
+		oLF.arMoreButtonID = [];
+
+		BX.addCustomEvent(window, "onAjaxInsertToNode", function() { BX.ajax.Setup({denyShowWait: true}, true); });
+		BX.bind(BX('sonet_log_counter_2_container'), 'click', oLF.clearContainerExternalNew);
+		BX.bind(BX('sonet_log_counter_2_container'), 'click', __logOnAjaxInsertToNode);
+
+		if (BX('sonet_log_more_container'))
+		{
+			BX.bind(BX('sonet_log_more_container'), 'click', oLF.clearContainerExternalMore);
+			BX.bind(BX('sonet_log_more_container'), 'click', __logOnAjaxInsertToNode);
+		}
+
+		if (BX('sonet_log_comment_text'))
+		{
+			BX('sonet_log_comment_text').onkeydown = BX.eventCancelBubble;
+		}
+
+		setTimeout(function() {
+			BX.LazyLoad.showImages(true);
+		}, 0);
+	});
+
+	BX.addCustomEvent("onFrameDataProcessed", function() {
+		BX.LazyLoad.showImages(true);
+	});
+
+</script><?
 
 if(strlen($arResult["ErrorMessage"]) > 0)
 {

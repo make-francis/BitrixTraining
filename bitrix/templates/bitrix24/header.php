@@ -158,12 +158,12 @@ if(\Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24'))
 
 					if (!$isExtranet)
 					{
-						if (!IsModuleInstalled("timeman") ||
+						/*if (!IsModuleInstalled("timeman") ||
 							!$APPLICATION->IncludeComponent('bitrix:timeman', 'bitrix24', array(), false, array("HIDE_ICONS" => "Y" ))
 						)
 						{
 							$APPLICATION->IncludeComponent('bitrix:planner', 'bitrix24', array(), false, array("HIDE_ICONS" => "Y" ));
-						}
+						}*/
 					}
 					else
 					{
@@ -407,7 +407,7 @@ if(\Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24'))
 	false
 );
 
-						if ($imBarExists)
+						/*if (imBarExists)
 						{
 							//This component changes user counters on the page.
 							//User counters can be changed in the left menu (left_vertical template).
@@ -422,7 +422,7 @@ if(\Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24'))
 								false,
 								array("HIDE_ICONS" => "Y")
 							);
-						}
+						}*/
 						?>
 
 						<div id="feed-up-btn-wrap" class="feed-up-btn-wrap" title="<?=GetMessage("BITRIX24_UP")?>" onclick="B24.goUp();">
