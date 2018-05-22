@@ -389,20 +389,24 @@ if(\Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24'))
 			<table class="bx-layout-inner-table<?=$leftColumnClass?>">
 				<tr class="bx-layout-inner-top-row">
 					<td class="bx-layout-inner-left" id="layout-left-column">
-						<?$APPLICATION->IncludeComponent("bitrix:menu", ".default", Array(
-	"ROOT_MENU_TYPE" => file_exists($_SERVER["DOCUMENT_ROOT"].SITE_DIR.".superleft.menu_ext.php")?"superleft":"top",	// Menu type for root level
-		"CHILD_MENU_TYPE" => "left",	// Menu type for child levels
-		"MENU_CACHE_TYPE" => "Y",	// Cache type
-		"MENU_CACHE_TIME" => "604800",	// Cache time (sec.)
-		"MENU_CACHE_USE_GROUPS" => "N",	// Respect Access Permissions
+						<?$APPLICATION->IncludeComponent(
+	"bitrix:menu", 
+	".default", 
+	array(
+		"ROOT_MENU_TYPE" => file_exists($_SERVER["DOCUMENT_ROOT"].SITE_DIR.".superleft.menu_ext.php")?"superleft":"top",
+		"CHILD_MENU_TYPE" => "left",
+		"MENU_CACHE_TYPE" => "Y",
+		"MENU_CACHE_TIME" => "604800",
+		"MENU_CACHE_USE_GROUPS" => "N",
 		"MENU_CACHE_USE_USERS" => "Y",
 		"CACHE_SELECTED_ITEMS" => "N",
-		"MENU_CACHE_GET_VARS" => "",	// Important query variables
-		"MAX_LEVEL" => "1",	// Menu depth level
-		"USE_EXT" => "Y",	// Use files .menu-type.menu_ext.php for menus
-		"DELAY" => "N",	// Delay building of menu template
-		"ALLOW_MULTI_SELECT" => "N",	// Allow several menu items to be highlighted as active
-		"COMPONENT_TEMPLATE" => "left_vertical"
+		"MENU_CACHE_GET_VARS" => array(
+		),
+		"MAX_LEVEL" => "1",
+		"USE_EXT" => "Y",
+		"DELAY" => "N",
+		"ALLOW_MULTI_SELECT" => "N",
+		"COMPONENT_TEMPLATE" => ".default"
 	),
 	false
 );

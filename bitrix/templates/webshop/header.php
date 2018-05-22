@@ -1,6 +1,4 @@
-<?php
-if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-?>
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,3 +68,17 @@ $APPLICATION->showHead();
         </div>
         <!-- /.container-fluid -->
     </nav>
+
+    <?$APPLICATION->IncludeComponent("bitrix:menu", "menu1", Array (
+            "ROOT_MENU_TYPE" => "top" ,
+            "MAX_LEVEL" => "1" ,
+            "CHILD_MENU_TYPE" => "top" ,
+            "USE_EXT" => "Y" ,
+            "DELAY" => "N" ,
+            "ALLOW_MULTI_SELECT" => "Y" ,
+            "MENU_CACHE_TYPE",
+            "MENU_CACHE_USE_GROUPS" => "Y" ,
+            "MENU_CACHE_GET_VARS" => ""
+        )
+    );
+    ?>
