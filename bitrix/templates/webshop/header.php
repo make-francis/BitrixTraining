@@ -11,7 +11,9 @@
     <link href="<?=CUtil::GetAdditionalFileURL(SITE_TEMPLATE_PATH."/css/bootstrap.css")?>" type="text/css" rel="stylesheet" />
     <link href="<?=CUtil::GetAdditionalFileURL(SITE_TEMPLATE_PATH."/css/font-awesome.min.css")?>" type="text/css" rel="stylesheet" />
     <link href="<?=CUtil::GetAdditionalFileURL(SITE_TEMPLATE_PATH."/ItemSlider/css/main-style.css")?>" type="text/css" rel="stylesheet" />
+
 <?
+$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery-1.10.2.js", true);
 $APPLICATION->showHead();
 
 ?>
@@ -29,7 +31,7 @@ $APPLICATION->showHead();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>DIGI</strong> Shop</a>
+                <a class="navbar-brand" href="index.php"><strong>DIGI</strong> Shop</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +39,7 @@ $APPLICATION->showHead();
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Track Order</a></li>
+                    <li><a href="basket.php">Check Order</a></li>
                     <li><a href="#">Login</a></li>
                     <li><a href="#">Signup</a></li>
 
@@ -69,16 +71,31 @@ $APPLICATION->showHead();
         <!-- /.container-fluid -->
     </nav>
 
-    <?$APPLICATION->IncludeComponent("bitrix:menu", "menu1", Array (
-            "ROOT_MENU_TYPE" => "top" ,
-            "MAX_LEVEL" => "1" ,
-            "CHILD_MENU_TYPE" => "top" ,
-            "USE_EXT" => "Y" ,
-            "DELAY" => "N" ,
-            "ALLOW_MULTI_SELECT" => "Y" ,
-            "MENU_CACHE_TYPE",
-            "MENU_CACHE_USE_GROUPS" => "Y" ,
-            "MENU_CACHE_GET_VARS" => ""
-        )
-    );
+    <div class="container">
+        <div class="row">
+            <?
+            if($_SERVER['REQUEST_URI'] == "/site_webshop/basket.php"){
+
+            }
+            else{
+
+            $APPLICATION->IncludeComponent("bitrix:menu", "menu1", 
+                Array(
+                "ROOT_MENU_TYPE" => "top",
+                "MAX_LEVEL" => "1",
+                "CHILD_MENU_TYPE" => "top",
+                "USE_EXT" => "Y",
+                "DELAY" => "N",
+                "ALLOW_MULTI_SELECT" => "N",
+                "MENU_CACHE_TYPE",
+                "MENU_CACHE_USE_GROUPS" => "Y",
+                "MENU_CACHE_GET_VARS" => "")
+            );
+        }
     ?>
+
+
+
+
+
+        
