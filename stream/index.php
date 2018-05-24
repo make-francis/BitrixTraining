@@ -53,7 +53,7 @@ $APPLICATION->IncludeComponent(
 );
 ?>
 
-<?$APPLICATION->IncludeComponent(
+<?/*$APPLICATION->IncludeComponent(
 	"bitrix:intranet.bitrix24.banner",
 	"",
 	array(),
@@ -99,7 +99,7 @@ if(CModule::IncludeModule('tasks')):
 		null,
 		array("HIDE_ICONS" => "N")
 	);
-endif;?>
+endif;*/?>
 
 <?if ($GLOBALS["USER"]->IsAuthorized())
 {
@@ -157,7 +157,7 @@ endif;?>
 }
 ?>
 
-<?$APPLICATION->IncludeComponent("bitrix:blog.popular_posts", "widget", array(
+<?/*$APPLICATION->IncludeComponent("bitrix:blog.popular_posts", "widget", array(
 	"GROUP_ID" => 1,
 	"SORT_BY1" => "RATING_TOTAL_VALUE",
 	"MESSAGE_COUNT" => "5",
@@ -175,9 +175,9 @@ endif;?>
 	"WIDGET_MODE" => "Y",
 	),
 	false
-);?>
+);*/?>
 
-<?$APPLICATION->IncludeComponent(
+<?/*$APPLICATION->IncludeComponent(
 	"bitrix:intranet.structure.birthday.nearest",
 	"widget",
 	Array(
@@ -193,7 +193,7 @@ endif;?>
 		"DEPARTMENT" => "0",
 		"AJAX_OPTION_ADDITIONAL" => ""
 	)
-);?>
+);*/?>
 
 <?if(CModule::IncludeModule('bizproc')):
 	$APPLICATION->IncludeComponent(

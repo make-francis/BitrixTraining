@@ -198,5 +198,7 @@ if (strlen($arResult["ERROR_MESSAGE"]) <= 0)
 }
 else
 {
+	echo "<h1><center>";
 	ShowError($arResult["ERROR_MESSAGE"]);
+	echo "</center></h1>";
 }

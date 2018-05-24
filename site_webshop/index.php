@@ -14,11 +14,11 @@
                     $elementSelect = Array("ID", "NAME","PREVIEW_PICTURE");
                     if(isset($_GET['BlockID'])){
                         $elementFilter = Array("IBLOCK_ID"=>$_GET['BlockID'],"SECTION_ID"=>$_GET['SecID']);
-                        $resElement = CIBlockElement::GetList(Array(), $elementFilter, false, Array("nTopCount" => 6), $elementSelect);
+                        $resElement = CIBlockElement::GetList(Array(), $elementFilter, false, Array("nPageSize" => 6), $elementSelect);
                     }
                     else{
                         $elementFilter = Array("IBLOCK_ID"=>28);
-                        $resElement = CIBlockElement::GetList(Array("RAND" => "ASC"), $elementFilter, false, Array("nTopCount" => 6), $elementSelect);
+                        $resElement = CIBlockElement::GetList(Array("RAND" => "ASC"), $elementFilter, false, Array("nPageSize" => 6,"iNumPage"=>3 ), $elementSelect);
                     }
 
                     while ($arFields = $resElement->Fetch()){
@@ -54,6 +54,8 @@
 ?>
                 </div>
             </div>
+
+            
 
 
 

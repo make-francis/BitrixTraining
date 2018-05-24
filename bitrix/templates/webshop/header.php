@@ -39,8 +39,8 @@ $APPLICATION->showHead();
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="basket.php">Check Order</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="index.php">Homepage</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">Check Order</a></li>
                     <li><a href="#">Signup</a></li>
 
                     <li class="dropdown">
@@ -71,7 +71,72 @@ $APPLICATION->showHead();
         <!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
+
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Shopping Cart</h4>
+      </div>
+      <div class="modal-body" style="max-height:600px;overflow:auto;">
+
+        <?$APPLICATION->IncludeComponent("bitrix:sale.basket.basket", ".default",
+    Array (
+        "ACTION_VARIABLE" => "action" ,
+        "AUTO_CALCULATION" => "Y" ,
+        "TEMPLATE_THEME" => "blue" ,
+        "COLUMNS_LIST" => array ( " NAME " , " DISCOUNT " , " WEIGHT " , "DELETE" , " DELAY " ), 
+        "COMPONENT_TEMPLATE" => ".default" ,
+        "COUNT_DISCOUNT_4_ALL_QUANTITY" => "N" ,
+        "GIFTS_BLOCK_TITLE" => "Choose one of the gifts" ,
+        "GIFTS_CONVERT_CURRENCY" => "Y" ,
+        "GIFTS_HIDE_BLOCK_TITLE" => "N" ,
+        "GIFTS_HIDE_NOT_AVAILABLE " => "N" ,
+        "GIFTS_MESS_BTN_BUY " => "Select" ,
+        "GIFTS_MESS_BTN_DETAIL "=> "Learn more" ,
+        "GIFTS_PAGE_ELEMENT_COUNT" => "4",
+        "GIFTS_PRODUCT_PROPS_VARIABLE" => "prop" ,
+        "GIFTS_PRODUCT_QUANTITY_VARIABLE" => "" ,
+        "GIFTS_SHOW_DISCOUNT_PERCENT" => "Y" ,
+        "GIFTS_SHOW_IMAGE" => "Y" ,
+        "GIFTS_SHOW_NAME" => "Y" ,
+        "GIFTS_SHOW_OLD_PRICE" => "Y" ,
+        "GIFTS_TEXT_LABEL_GIFT" => "Gift" ,
+        "GIFTS_PLACE" =>"BOTTOM" ,
+        "HIDE_COUPON" => "N" ,
+        "OFFERS_PROPS" => array ( "SIZES_SHOES" , "SIZES_CLOTHES" ),
+        "PATH_TO_ORDER" => "/personal/order.php" ,
+        "PRICE_VAT_SHOW_VALUE" => "N" ,
+        "QUANTITY_FLOAT" => "N" ,
+        "SET_TITLE" => "Y" ,
+        "TEMPLATE_THEME" => "blue" ,
+        "USE_GIFTS" => "Y" ,
+        "USE_PREPAYMENT"=> "N"
+    )
+);
+?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+    <div class="container" style="min-height:752px;">
         <div class="row">
             <?
             if($_SERVER['REQUEST_URI'] == "/site_webshop/basket.php"){

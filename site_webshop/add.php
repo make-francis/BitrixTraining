@@ -8,6 +8,9 @@ if(isset($_GET['ID'])){
         Add2BasketByProductID ( $id, 1, array());
         }
     }
-    
-header('Location:'.$_SERVER['HTTP_REFERER']);
+
 ?>
+<script>
+	alert('Successfully added to the cart.');
+	window.location.href="<?=$_SERVER['HTTP_REFERER']?>";
+</script>

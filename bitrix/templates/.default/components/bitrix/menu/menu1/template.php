@@ -1,13 +1,9 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-
-
 <div class="col-md-3">
   <div>
     <a href="#" class="list-group-item active">Electronics</a>
     <ul class="list-group">
-
-
 
 <?
 $blocktype = CIBlockType::GetByIDLang("webshop", LANGUAGE_ID);
