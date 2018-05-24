@@ -157,6 +157,7 @@ endif;*/?>
 }
 ?>
 
+
 <?/*$APPLICATION->IncludeComponent("bitrix:blog.popular_posts", "widget", array(
 	"GROUP_ID" => 1,
 	"SORT_BY1" => "RATING_TOTAL_VALUE",
@@ -176,6 +177,8 @@ endif;*/?>
 	),
 	false
 );*/?>
+
+<?$APPLICATION->IncludeComponent("bitrix:blog.popular_posts", "qoute", array(),false);?>
 
 <?/*$APPLICATION->IncludeComponent(
 	"bitrix:intranet.structure.birthday.nearest",
