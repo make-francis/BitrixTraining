@@ -24,13 +24,14 @@ $userres = $user->Fetch();
 
 
 
-echo "<br><br><br><br>";?>
+
+?>
 
 		
 <div class="user-profile-block-wrap">
    <div class="user-profile-block-wrap-l">
    	<?if($pic = CFile::GetPath($userres['PERSONAL_PHOTO'])){?>
-			<span class="user-avatar" style="background: url(<?=$pic?>)"></span>
+			<span class="user-avatar" style="background: url(<?=$pic?>)no-repeat center;background-size: 100%;"></span>
 		<?}
 		else{?>
 			<span class="user-avatar user-default-avatar"></span>
