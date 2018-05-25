@@ -5,22 +5,47 @@ $this->addExternalCss(SITE_TEMPLATE_PATH."/css/sidebar.css");
 $this->setFrameMode(true);
 
 
-$this->SetViewTarget("sidebar", 250);
-$getElement = CIBlockElement::GetList(Array("RAND" => "ASC"), Array("IBLOCK_ID"=>29), false, Array("nTopCount" => 1), Array());
+$this->SetViewTarget("sidebar", 1);
+$getElement = CIBlockElement::GetList(Array("RAND" => "ASC"), Array("IBLOCK_ID"=>29), false, Array("nTopCount" => 1), Array("ID" , "IBLOCK_ID" , "NAME"));
 $elemento = $getElement->Fetch();
+
+$prop = CIBlockElement::GetProperty($elemento['IBLOCK_ID'], $elemento['ID'], Array());
+$result = $prop->Fetch();
+$by = $result['VALUE'];
+$result2 = $prop->Fetch();
+$qoute = $result2['VALUE'];
+
+
+
+$user = CUser::GetByID($by);
+$userres = $user->Fetch();
+
+$name = $userres['NAME']." ".$userres['LAST_NAME'];
+
+$loc = "details.php?iblock=".$elemento['IBLOCK_ID']."&&element=".$elemento['ID'];
 
 ?>
 
-<div class="sidebar-widget sidebar-widget-qoute" style="margin-top: 5px;">
+<div class="sidebar-widget sidebar-widget-qoute" style="margin-top: 5px; min-height: 130px;">
 	<div class="sidebar-widget-top">
-		<div class="sidebar-widget-top-title">Title</div>
+		<div class="sidebar-widget-top-title">QUOTE OF THE DAY</div>
 	</div>
 
-	<a href="" class="sidebar-widget-item widget-last-item">
-		<span class="user-avatar user-default-avatar">
+	<a href="<?=$loc?>" class="sidebar-widget-item widget-last-item">
+		<?
+		if($pic = CFile::GetPath($userres['PERSONAL_PHOTO'])){?>
+		<span class="user-avatar" style="background: url(<?=$pic?>) no-repeat center;background-size: 100%;"></span>
+		<?}
+		else{?>
+			<span class="user-avatar user-default-avatar"></span>
+		<?}
+		?>
+		
+		<span class="sidebar-user-info">
+			<span class="user-post-name"><?=$name?></span>
 		</span>
 		<span class="sidebar-user-info">
-			<span class="user-post-name">a</span>
+			<span><q><?=$qoute?></q></span>
 		</span>
 	</a>
 
