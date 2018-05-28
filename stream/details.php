@@ -1,7 +1,5 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 
-?>
 <?
 $iblock = $_GET['iblock'];
 $element = $_GET['element'];
